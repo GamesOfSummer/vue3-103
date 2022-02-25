@@ -1,24 +1,26 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "@/components/HelloWorld.vue";
-import { reactive, ref, defineComponent, computed, watch } from "vue";
+import { ref, watch } from "vue";
 
-let getTaco = true;
+let getTaco = ref(true);
 const question = ref("");
 
-function getTacoClick(event) {
+function getTacoClick() {
   console.log("clicked");
-  getTaco = !getTaco;
+  getTaco.value = !getTaco.value;
 }
 
 // watch works directly on a ref
 watch(getTaco, async (newQuestion, oldQuestion) => {
-  console.log("clicked again!");
+  console.log(oldQuestion);
+  console.log("getTaco watcher");
+  console.log(newQuestion);
 });
 
 // watch works directly on a ref
 watch(question, async (newQuestion, oldQuestion) => {
-  console.log("clicked again!");
+  console.log(oldQuestion);
+  console.log("question watcher");
+  console.log(newQuestion);
 });
 </script>
 
